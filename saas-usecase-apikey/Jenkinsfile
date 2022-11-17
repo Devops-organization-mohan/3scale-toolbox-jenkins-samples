@@ -17,14 +17,14 @@ node() {
     service = toolbox.prepareThreescaleService(
         openapi: [filename: "saas-usecase-apikey/swagger.yaml"],
         environment: [ baseSystemName: "saas_usecase_apikey",
-                       privateBaseUrl: params.PRIVATE_BASE_URL ],
-        toolbox: [ openshiftProject: params.NAMESPACE,
-                   destination: params.TARGET_INSTANCE,
+                       privateBaseUrl: "https://echo-api.3scale.net:443" ],
+        toolbox: [ openshiftProject: "3scale-dev",
+                   destination: "https://a48f4f726f8e454974de8ccdb91ea34fced3032803c5b17e20a0c4e6e1d6417c@3scale-admin.apps.ocpdev.snbdv.com/",
                    image: "quay.io/redhat/3scale-toolbox:master", // TODO: remove me once the final image is released
-                   secretName: params.SECRET_NAME],
+                   secretName: "3scale-toolbox"],
         service: [:],
         applications: [
-            [ name: "my-test-app", description: "This is used for tests", plan: "test", account: params.DEVELOPER_ACCOUNT_ID ]
+            [ name: "my-test-app", description: "This is used for tests", plan: "test", account: "3" ]
         ],
         applicationPlans: [
           [ systemName: "test", name: "Test", defaultPlan: true, published: true ],
@@ -32,8 +32,8 @@ node() {
           [ systemName: "gold", name: "Gold" ],
         ]
     )
-
-    //echo "toolbox version = " + service.toolbox.getToolboxVersion()
+    echo "END"
+    echo "toolbox version = " + service.toolbox.getToolboxVersion()
   }
 
   stage("Import OpenAPI") {
