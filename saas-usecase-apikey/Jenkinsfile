@@ -32,8 +32,8 @@ node() {
           [ systemName: "gold", name: "Gold" ],
         ]
     )
-    echo "END"
-    echo "toolbox version = " + service.toolbox.getToolboxVersion()
+       echo "END"
+       echo "toolbox version = " + service.toolbox.getToolboxVersion()
   }
 
   stage("Import OpenAPI") {
