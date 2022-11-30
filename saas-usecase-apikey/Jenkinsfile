@@ -7,7 +7,7 @@ library identifier: '3scale-toolbox-jenkins@master',
 
 def service = null
 
-node() {
+node('jenkins-slave-01') {
   stage('Checkout Source') {
     checkout scm
   }
