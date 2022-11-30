@@ -14,6 +14,7 @@ node() {
 
   stage("Prepare") {
           echo "Start of Prepare stage"
+          sh '3scale help'
     service = toolbox.prepareThreescaleService(
         openapi: [filename: "saas-usecase-apikey/swagger.yaml"],
         environment: [ baseSystemName: "saas_usecase_apikey",
